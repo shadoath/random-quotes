@@ -1,0 +1,112 @@
+$base-margin: .25rem;
+$base-padding: .5rem;
+$border-radius: 10px;
+@mixin border {
+  border: 1px solid #636363;
+  border-radius: $border-radius;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@mixin quote($font-size: 1rem) {
+  .quote{
+    &__text {
+      padding: 0 $base-padding;
+      margin: $base-margin * 2;
+      font-size: $font-size;
+    }
+    &__author{
+      margin-top: 5px;
+      font-size: $font-size * .75;
+      margin: $base-margin 0 $base-margin 0;
+    }
+  }}
+body {
+  background: url("https://www.demilked.com/magazine/wp-content/uploads/2015/04/night-sky-landscape-photography-instagram-mikko-lagerstedt-finland-19.jpg");
+}
+.App {
+  text-align: center;
+  width: 80vw;
+  margin: 0 auto;
+  color: white;
+  
+  .title {
+    margin: $base-margin * 3;
+    text-decoration: underline;
+  }
+  .quote-box {
+    @include flex-column;
+    @include border;
+    background-color: rgba(186, 186, 187, 0.7);
+    color: black;
+  }
+  .current-quote {
+    @include flex-column;
+    @include border;
+    @include quote($font-size: 2rem);
+    padding: $base-padding;
+    min-height: 200px;
+  }
+
+  .buttons {
+    @include flex-row;
+    color: white;
+    
+    .icon-button {
+      @include border;
+      background-color: rgba(22, 22, 29, 0.75);
+      cursor: pointer;
+      margin: 0.5rem;
+      padding: $base-padding * .75;
+      font-weight: 600;
+      &.active {
+        color: gold;
+        .fa-heart{
+          color: pink;
+        }
+      }
+      .fa-twitter {
+        color: #1da1f2;
+      }
+      .fa-fw {
+        line-height: 20px;
+      }
+      .fa-trash {
+        &:hover,
+        &:focus,
+        &:active {
+          color: red;      
+        }
+      }
+    }
+  }
+
+  .favorite-quotes {
+    @include flex-row;
+
+    .favorite-box {
+      @include quote($font-size: 1.1rem);
+      width: 30%;
+      margin: $base-margin;
+      
+      .author-favorite {
+        @include flex-column;
+      }
+    }
+  }
+  .created-by {
+    right: 5px;
+    bottom: 5px;
+  }
+}
